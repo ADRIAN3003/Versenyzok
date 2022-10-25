@@ -53,13 +53,22 @@ namespace Versenyzok
 
         private static void OtodikFeladat()
         {
-            Console.WriteLine("5. feladat:");
-            foreach (var pilota in pilotak)
+            //Console.WriteLine("5. feladat:");
+            //foreach (var pilota in pilotak)
+            //{
+            //    if (pilota.SzulDatum < Convert.ToDateTime("1901. 01. 01."))
+            //    {
+            //        Console.WriteLine($"\t{pilota.Nev} ({pilota.SzulDatum.ToShortDateString()})");
+            //    }
+            //}
+
+            var lekeres = (from pilota in pilotak
+                          where pilota.SzulDatum < Convert.ToDateTime("1901. 01. 01.")
+                          select pilota).ToList();
+
+            foreach (var item in lekeres)
             {
-                if (pilota.SzulDatum < Convert.ToDateTime("1901. 01. 01."))
-                {
-                    Console.WriteLine($"\t{pilota.Nev} ({pilota.SzulDatum.ToShortDateString()})");
-                }
+                Console.WriteLine($"\t{item.Nev} ({item.SzulDatum.ToShortDateString()})");
             }
         }
 
